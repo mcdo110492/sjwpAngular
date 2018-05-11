@@ -1,0 +1,13 @@
+
+
+  <app-title-bar [title]="'Death Certificate Details'" [goBack]="'/main/death'" [toolTip]="'Go Back to Death List'" ></app-title-bar>  
+    
+    <!-- Start Form Component Here -->
+    <div *ngIf="death">
+    <app-death-form [death]="death" ></app-death-form>
+    </div>
+    <!-- End Form Component Here -->
+
+
+
+

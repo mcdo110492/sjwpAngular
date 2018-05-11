@@ -1,0 +1,34 @@
+<h2 md-dialog-title>Reference Number: {{ data.rrNo }}</h2><h2 md-dialog-title>Total Sales: {{ data.total | number:'1.2-2'}}</h2>
+<md-dialog-content>
+  <div class="table-content" >
+    <md-table   #table [dataSource]="dataSource"  >
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container cdkColumnDef="serviceName">
+          <md-header-cell *cdkHeaderCellDef> Item </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.service_type.serviceCode}} - {{ row.service_type.serviceName }} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="serviceCost">
+          <md-header-cell *cdkHeaderCellDef> Price </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.serviceCost | number:'1.2-2'}} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="serviceQty">
+          <md-header-cell *cdkHeaderCellDef > Quantity </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{row.serviceQty}} </md-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="totalPrice">
+          <md-header-cell *cdkHeaderCellDef > Total Price </md-header-cell>
+          <md-cell *cdkCellDef="let row"> {{ getTotal(row.serviceQty,row.serviceCost) | number: '1.2-2'}} </md-cell>
+        </ng-container>
+
+   
+        <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+        <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+</div>
+</md-dialog-content>

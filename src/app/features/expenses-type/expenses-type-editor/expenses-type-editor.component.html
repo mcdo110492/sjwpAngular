@@ -1,0 +1,15 @@
+
+
+
+ 
+  <app-title-bar [title]="'Expense Type Detail'" [goBack]="'/main/expenses/type'" [toolTip]="'Go Back to Expense Type List'" ></app-title-bar> 
+  
+  <!-- Start Form Component Here -->
+  <div *ngIf="expenseType">
+  <app-expenses-type-form [expenseType]="expenseType" ></app-expenses-type-form>
+  </div>
+  <!-- End Form Component Here -->
+
+
+
+

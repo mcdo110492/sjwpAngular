@@ -1,0 +1,5 @@
+<md-progress-bar class="loader-indicator" *ngIf="isLoaderShow" mode="indeterminate" color="accent"></md-progress-bar>
+<div [@fadeInAnimation]="prepRouteState(routerParentOutlet)" class="app-container">
+<router-outlet #routerParentOutlet="outlet"></router-outlet>
+</div>
+

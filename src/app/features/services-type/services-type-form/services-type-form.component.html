@@ -1,0 +1,62 @@
+<form [formGroup]="serviceForm" novalidate>
+  <md-card>
+    <md-card-content fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+      
+      <div fxLayout="row" fxFill>
+          
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Code" formControlName="serviceCode" appUniqueValidator keyUrl="services/type/validate" keyId="{{ serviceId.value }}" required>
+            <md-error *ngIf="serviceForm.get('serviceCode').hasError('required')" >
+                Code is <strong>required</strong> 
+            </md-error>
+            <md-error *ngIf="serviceForm.get('serviceCode').hasError('asyncInvalid')" >
+                Code must be <strong>unique</strong>
+            </md-error>
+          </md-input-container>
+
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Name" formControlName="serviceName" required>
+            <md-error>
+                Name is <strong>required</strong>
+            </md-error>
+          </md-input-container>
+
+          <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Cost" formControlName="cost" required>
+            <md-error>
+                Cost is <strong>required</strong>
+            </md-error>
+          </md-input-container>
+                    
+      </div>
+
+      <div fxLayout="row" fxFill>
+
+        <md-input-container fxFlex="66" class="tricky-select">
+            <input type="text" mdInput style="display:none;">
+            <md-select fxFlex="66"  formControlName="serviceCategoryId" placeholder="Categories">
+                <md-option *ngFor="let category of categories"  [value]="category.serviceCategoryId">
+                    {{ category.serviceCategoryName }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+          
+      </div>
+
+      
+                
+    </md-card-content>
+
+    <md-card-actions> 
+      <div fxLayout fxFill fxLayoutAlign="center center">
+        
+        <button md-raised-button [disabled]="serviceForm.invalid || serviceForm.pristine" (click)="saveForm()"  color="accent">Save Changes</button>
+
+        <button md-raised-button *ngIf="serviceId.value != 0" [disabled]="serviceForm.pristine" (click)="revertForm()"  color="warn">Revert Changes</button>
+
+        <button md-raised-button *ngIf="serviceId.value == 0"   [disabled]="serviceForm.pristine" (click)="resetForm()"  color="warn">Reset</button>
+        
+      </div>
+    </md-card-actions> 
+  </md-card>
+</form>

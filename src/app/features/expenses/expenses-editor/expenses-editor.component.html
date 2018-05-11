@@ -1,0 +1,15 @@
+
+
+
+ 
+  <app-title-bar [title]="'Expense Detail'" [goBack]="'/main/expenses/list'" [toolTip]="'Go Back to Expense List'" ></app-title-bar> 
+  
+  <!-- Start Form Component Here -->
+  <div *ngIf="expenses">
+  <app-expenses-form [expenses]="expenses" ></app-expenses-form>
+  </div>
+  <!-- End Form Component Here -->
+
+
+
+

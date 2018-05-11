@@ -1,0 +1,36 @@
+
+<form [formGroup]="categoryForm" novalidate>
+  <md-card>
+    <md-card-content fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+      
+
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex>
+              <input mdInput placeholder="Service Category Name" formControlName="serviceCategoryName" appUniqueValidator keyUrl="services/categories/validate" keyId="{{ serviceCategoryId.value }}" required>
+              <md-error *ngIf="categoryForm.get('serviceCategoryName').hasError('required')" >
+                Service Category Name is <strong>required</strong>
+              </md-error>
+              <md-error *ngIf="categoryForm.get('serviceCategoryName').hasError('asyncInvalid')" >
+                Service Category Name must be <strong>unique</strong>
+              </md-error>
+          </md-input-container>
+
+      </div>
+                
+    </md-card-content>
+
+    <md-card-actions> 
+      <div fxLayout fxFill fxLayoutAlign="center center">
+        
+        <button md-raised-button [disabled]="categoryForm.invalid || categoryForm.pristine" (click)="saveForm()"  color="accent">Save Changes</button>
+
+        <button md-raised-button *ngIf="serviceCategoryId.value != 0" [disabled]="categoryForm.pristine" (click)="revertForm()"  color="warn">Revert Changes</button>
+
+        <button md-raised-button *ngIf="serviceCategoryId.value == 0"   [disabled]="categoryForm.pristine" (click)="resetForm()"  color="warn">Reset</button>
+        
+      </div>
+    </md-card-actions> 
+  </md-card>
+</form>

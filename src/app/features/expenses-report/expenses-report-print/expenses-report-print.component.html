@@ -1,0 +1,47 @@
+<app-title-bar [title]="'Print Expenses Report'" [goBack]="'/main/expenses/report'" [toolTip]="'Go Back to Expenses Report'" [upload]="true"></app-title-bar>
+<div id="print-area" class="report-area">
+
+</div>
+
+
+    <div *ngIf="expensesIndividual.length">
+      <table id="basic-table" class="display-none">
+        <thead>
+          <tr>
+            <th>Item(s)</th>
+            <th>Total Costs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expensesIndividual">
+            <td>{{ expense.items.expenseCode }} - {{ expense.items.expenseName }} </td>
+            <td>{{ expense.totalCost | number : '1.2-2' }} </td>
+          </tr>
+          <tr>
+            <td class="category">Net Total Costs: </td>
+            <td>{{ netCosts | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="expensesCategories.length">
+      <table id="basic-table" class="display-none"  >
+          <thead>
+            <tr>
+              <th>Item(s)</th>
+              <th>Total Costs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let expense of expensesCategories">
+              <td [class.category]="expense.isCategory" [class.subCategory]="!expense.isCategory" >{{ expense.itemName }}</td>
+              <td><div *ngIf="!expense.isCategory" >{{ expense.totalCost | number :'1.2-2'}} </div></td>
+            </tr>
+            <tr>
+              <td class="category">Net Total Costs: </td>
+              <td>{{ netCosts | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>

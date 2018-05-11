@@ -1,0 +1,26 @@
+<app-title-bar [title]="'Print Sales Report'" [goBack]="'/main/sales/list'" [toolTip]="'Go Back to Sales List'" [upload]="true"></app-title-bar>
+<div id="print-area" class="report-area">
+
+</div>
+
+<table id="basic-table" style="display:none">
+  <thead>
+    <tr>
+      <th>Reference Number</th>
+      <th>Amount Paid</th>
+      <th>Total Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sale of sales">
+      <td>{{ sale.rrNo }}</td>
+      <td>{{ sale.amountPaid | number:'1.2-2' }}</td>
+      <td>{{ sale.totalCost | number:'1.2-2' }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Net Total :</td>
+      <td>{{ netCost | number:'1.2-2' }}</td>
+    </tr>
+  </tbody>
+</table>

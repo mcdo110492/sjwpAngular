@@ -1,0 +1,35 @@
+<div class="login-container" ngClass.xs="login-container2" ngClass.sm="login-container2" fxLayout fxLayoutAlign="center center">
+      <md-card fxFlex class="mat-elevation-z8">
+         <md-card-header fxLayout="column" fxFlexAlign="center center">
+             <!-- <img src="assets/favicon.jpg" class="logo" alt=""> -->
+             <div class="title" ngClass.xs="title2" ngClass.sm="title2"><h4>LOGIN</h4></div>
+         </md-card-header>
+         <form  [formGroup]="loginForm" novalidate>
+          <md-card-content>
+              <div fxLayout="column" fxFlex fxFlexAlign="center center">
+
+                <md-form-field floatPlaceholder="auto" fxFlex>
+                  <input id="username" mdInput type="text" placeholder="Username" formControlName="username" required>
+                  <md-error *ngIf="loginForm.get('username').hasError('required')">
+                      Username is <strong>required</strong>
+                  </md-error>
+                </md-form-field>
+                <md-form-field floatPlaceholder="auto" fxFlex>
+                  <input id="password" mdInput type="password"  placeholder="Password" formControlName="password" required>
+                  <md-error *ngIf="loginForm.get('password').hasError('required')">
+                          Password is <strong>required</strong>
+                  </md-error>
+                </md-form-field>
+            </div>
+          </md-card-content>
+          <md-card-actions>
+             <button type="submit" fxFlex md-raised-button [disabled]="loginForm.invalid" color="primary" (click)="login()">
+                  LOGIN
+             </button>
+          </md-card-actions>
+        </form>
+      </md-card>
+</div>
+
+
+

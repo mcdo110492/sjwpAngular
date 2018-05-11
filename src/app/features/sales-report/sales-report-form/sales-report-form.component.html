@@ -1,0 +1,30 @@
+<form [formGroup]="reportForm" fxLayout fxLayout.xs="column" fxLayoutGap="10px">
+
+  <md-input-container fxFlex="44" fxFlex.xs>
+    <input mdInput [mdDatepicker]="picker" placeholder="Starting Date" formControlName="from" required>
+    <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <md-error>
+      Starting Date is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-datepicker [startAt]="currentDate" #picker></md-datepicker>
+
+  <md-input-container fxFlex="44" fxFlex.xs>
+      <input mdInput [mdDatepicker]="picker2" placeholder="Ending Date" formControlName="to" required>
+      <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+      <md-error>
+        Ending Date is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+  <md-datepicker [startAt]="currentDate" #picker2></md-datepicker>
+
+  <div fxFlex>
+    <button md-raised-button [disabled]="reportForm.invalid" (click)="byCategory()" color="primary">Generate by Category</button>
+  </div>
+
+  <div fxFlex>
+      <button md-raised-button [disabled]="reportForm.invalid" (click)="byIndividual()"  color="primary">Generate by Individual</button>
+    </div>
+
+</form>

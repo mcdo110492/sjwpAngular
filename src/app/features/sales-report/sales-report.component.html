@@ -1,0 +1,52 @@
+
+<app-title-bar [title]="'Sales Report'" [upload]="true" ></app-title-bar>
+
+<md-card>
+  <md-card-header>
+    <app-sales-report-form (dateRequest)="reportEventFn($event)" ></app-sales-report-form>
+  </md-card-header>
+  <md-card-content class="table-report-content">
+    <div *ngIf="salesIndividual.length">
+      <button md-raised-button (click)="print(1)" color="primary">PRINT</button>
+      <table id="report">
+        <thead>
+          <tr>
+            <th>Item(s)</th>
+            <th>Total Sales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sale of salesIndividual">
+            <td>{{ sale.items.serviceCode }} - {{ sale.items.serviceName }} </td>
+            <td>{{ sale.totalCost | number : '1.2-2' }} </td>
+          </tr>
+          <tr>
+            <td class="category">Net Total Sales: </td>
+            <td>{{ totalSales | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="salesCategories.length">
+      <button md-raised-button (click)="print(2)" color="primary">PRINT</button>
+      <table id="report"  >
+          <thead>
+            <tr>
+              <th>Item(s)</th>
+              <th>Total Sales</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sale of salesCategories">
+              <td [class.category]="sale.isCategory" [class.subCategory]="!sale.isCategory" >{{ sale.itemName }}</td>
+              <td><div *ngIf="!sale.isCategory" >{{ sale.totalCost | number :'1.2-2'}} </div></td>
+            </tr>
+            <tr>
+              <td class="category">Net Total Sales: </td>
+              <td>{{ totalSales | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </md-card-content>
+</md-card>

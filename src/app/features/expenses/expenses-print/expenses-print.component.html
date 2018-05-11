@@ -1,0 +1,28 @@
+<app-title-bar [title]="'Print Expense Report'" [goBack]="'/main/expenses/list'" [toolTip]="'Go Back to Expense List'" [upload]="true"></app-title-bar>
+<div id="print-area" class="report-area">
+
+</div>
+
+<table id="basic-table" style="display:none">
+  <thead>
+    <tr>
+      <th>Reference Number</th>
+      <th>Expense Type</th>
+      <th>Cost</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let expense of expenses">
+      <td>{{ expense.expenserrNo }}</td>
+      <td>{{ expense.expenses.expenseCode }} - {{ expense.expenses.expenseName }}</td>
+      <td>{{ expense.expenseCost | number:'1.2-2' }}</td>
+      <td>{{ expense.details }}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Net Total :</td>
+      <td>{{ netCost | number:'1.2-2' }}</td>
+    </tr>
+  </tbody>
+</table>

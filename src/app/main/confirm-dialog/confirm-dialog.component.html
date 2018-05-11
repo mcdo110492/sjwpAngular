@@ -1,0 +1,12 @@
+
+    <h2 md-dialog-title>Are you sure?</h2>
+    <md-dialog-content>
+        {{data.content}}
+    </md-dialog-content>
+    <br><br>
+    <md-dialog-actions fxLayout="row" align="end" fxLayoutGap="10px">
+
+            <button md-raised-button [md-dialog-close]="false" color="warn" >No</button>
+            <button md-raised-button  color="primary" [md-dialog-close]="true">Proceed</button>
+ 
+    </md-dialog-actions>

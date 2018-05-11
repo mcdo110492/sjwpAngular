@@ -1,0 +1,15 @@
+
+
+
+ 
+  <app-title-bar [title]="'Baptism Details'" [goBack]="'/main/baptism'" [toolTip]="'Go Back to Baptism List'" ></app-title-bar> 
+    
+    <!-- Start Form Component Here -->
+    <div *ngIf="baptism">
+    <app-baptism-form [baptism]="baptism" ></app-baptism-form>
+    </div>
+    <!-- End Form Component Here -->
+
+
+
+

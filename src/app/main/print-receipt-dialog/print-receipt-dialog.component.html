@@ -1,0 +1,46 @@
+<md-dialog-content>
+  <div id="print-area">
+    <br><br><br><br>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td style="width:500px"></td>
+          <td>{{currentDate | date}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td style="width:200px"></td>
+          <td>{{data.customer | uppercase}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td style="width:200px"></td>
+          <td>{{ numberToWords(data.amountPaid) | uppercase}} PESOS ONLY</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td></td>
+          <td style="width:200px"></td>
+          <td>{{data.amountPaid | number:'1.2-2'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</md-dialog-content>
+<md-dialog-actions fxLayout="row">
+  <button md-raised-button  color="primary" (click)="print()">Print</button>
+  <span fxFlex></span>
+  <button md-raised-button [md-dialog-close]="false"  color="warn">Close</button>
+</md-dialog-actions>

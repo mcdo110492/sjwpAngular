@@ -1,0 +1,13 @@
+
+
+ <app-title-bar [title]="'Confirmation Certificate Details'" [toolTip]="'Go Back to Confirmation List'" [goBack]="'/main/confirmation'" ></app-title-bar>
+    
+    <!-- Start Form Component Here -->
+    <div *ngIf="confirmation">
+    <app-confirmation-form [confirmation]="confirmation" ></app-confirmation-form>
+    </div>
+    <!-- End Form Component Here -->
+
+
+
+

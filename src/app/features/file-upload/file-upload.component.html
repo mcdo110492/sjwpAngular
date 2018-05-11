@@ -1,0 +1,37 @@
+<form  enctype="multipart/form-data" novalidate >
+
+      <md-card>
+        <md-card-content fxLayout="column" fxFlex>
+            <button type="submit" [disabled]="!UPLOAD_STATUS || !FORM_VALID"  md-raised-button class="card-button" color="accent" (click)="fileSubmit()" fxFlexAlign="end">Upload File</button>
+            <md-form-field  class="tricky-select" fxFlex>
+                <input type="text" mdInput style="display:none;">
+                <md-select fxFlex="66" [(ngModel)]="selectedMinister" name="selectedMinister" placeholder="Minister" (change)="ministerChangeEvent()" required>
+                    <md-option *ngFor="let minister of ministers"  [value]="minister.minister_id">
+                        {{ minister.minister_name }}
+                    </md-option>
+                </md-select>
+                <md-hint *ngIf="!FORM_VALID" style="color:red;">
+                    Please Select Minister <strong>first</strong>
+                </md-hint>
+            </md-form-field>
+            
+  
+              <div class="dropbox" fxFlex>
+                  <input type="file" name="myFile" (change)="fileChangeEvent($event.target.files)"  required>
+                  <p *ngIf="fileName === ''">
+                    Drag your file(s) here to begin<br>
+                    or click to browse
+                  </p>
+  
+                  <p *ngIf="fileName !== ''">
+                      {{ fileName }}
+                    </p>
+  
+                </div>
+  
+            <md-progress-bar mode="determinate" [value]="percentDone" color="primary"></md-progress-bar>
+
+        </md-card-content>
+      </md-card>
+  </form>
+

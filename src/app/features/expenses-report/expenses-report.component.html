@@ -1,0 +1,52 @@
+
+<app-title-bar [title]="'Expenses Report'" [upload]="true" ></app-title-bar>
+
+<md-card>
+  <md-card-header>
+    <app-expenses-report-form (dateRequest)="reportEventFn($event)" ></app-expenses-report-form>
+  </md-card-header>
+  <md-card-content class="table-report-content">
+    <div *ngIf="expensesIndividual.length">
+      <button md-raised-button (click)="print(1)" color="primary">PRINT</button>
+      <table id="report">
+        <thead>
+          <tr>
+            <th>Item(s)</th>
+            <th>Total Costs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let expense of expensesIndividual">
+            <td>{{ expense.items.expenseCode }} - {{ expense.items.expenseName }} </td>
+            <td>{{ expense.totalCost | number : '1.2-2' }} </td>
+          </tr>
+          <tr>
+            <td class="category">Net Total Costs: </td>
+            <td>{{ netCosts | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="expensesCategories.length">
+      <button md-raised-button (click)="print(2)" color="primary">PRINT</button>
+      <table id="report"  >
+          <thead>
+            <tr>
+              <th>Item(s)</th>
+              <th>Total Costs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let expense of expensesCategories">
+              <td [class.category]="expense.isCategory" [class.subCategory]="!expense.isCategory" >{{ expense.itemName }}</td>
+              <td><div *ngIf="!expense.isCategory" >{{ expense.totalCost | number :'1.2-2'}} </div></td>
+            </tr>
+            <tr>
+              <td class="category">Net Total Costs: </td>
+              <td>{{ netCosts | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </md-card-content>
+</md-card>

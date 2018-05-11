@@ -1,0 +1,78 @@
+<form [formGroup]="expenseForm" novalidate>
+  <md-card>
+    <md-card-content fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex="80">
+              <input mdInput placeholder="Reference Number" formControlName="expenserrNo" required>
+              <md-error>
+                Reference Number is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+
+            <div fxFlex="20">
+                <md-input-container >
+                  <input mdInput [mdDatepicker]="picker" placeholder="Expense Date" formControlName="dateExpense" required>
+                  <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+                  <button mdSuffix [mdDatepickerToggle]="picker"></button>
+                  <md-error>
+                      Expense Date is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+                <md-datepicker #picker [startAt]="startDate"></md-datepicker>
+            </div>
+
+      </div>  
+
+      <div fxLayout="row" fxFill>
+        
+          <md-input-container fxFlex class="tricky-select">
+              <input type="text" mdInput style="display:none;">
+              <md-select fxFlex="88"  formControlName="expenseId" placeholder="Expenses" required>
+                  <md-option *ngFor="let expense of expensesType"  [value]="expense.expenseId">
+                      {{ expense.expenseCode }} - {{ expense.expenseName }}
+                  </md-option>
+              </md-select>
+              <md-hint *ngIf="expenseForm.get('expenseId').hasError('required') && expenseForm.get('expenseId').touched" style="color:red;">
+                  Expense Type is <strong>required</strong>
+              </md-hint>
+          </md-input-container>
+
+          <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Cost" formControlName="expenseCost" required>
+            <md-error>
+              Cost is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+                  
+      </div>
+      
+
+      <div fxLayout="row" fxFill>
+          
+          <md-input-container fxFlex>
+            <input mdInput #details maxlength="200" placeholder="Details" formControlName="details">
+            <md-hint align="start"><strong>Don't disclose personal info</strong> </md-hint>
+            <md-hint align="end">{{details.value.length}} / 200</md-hint>
+          </md-input-container>
+
+      </div>
+      
+      
+     
+    </md-card-content>
+
+    <md-card-actions> 
+      <div fxLayout fxFill fxLayoutAlign="center center">
+        
+        <button md-raised-button [disabled]="expenseForm.invalid || expenseForm.pristine" (click)="saveForm()"  color="accent">Save Changes</button>
+
+        <button md-raised-button *ngIf="expenseCostId.value != 0" [disabled]="expenseForm.pristine" (click)="revertForm()"  color="warn">Revert Changes</button>
+
+        <button md-raised-button *ngIf="expenseCostId.value == 0"   [disabled]="expenseForm.pristine" (click)="resetForm()"  color="warn">Reset</button>
+        
+      </div>
+    </md-card-actions> 
+  </md-card>
+</form>

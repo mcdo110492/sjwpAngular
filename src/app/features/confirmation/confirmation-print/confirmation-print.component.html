@@ -1,0 +1,81 @@
+
+<div id="print-area"> 
+    <div *ngIf="confirmation"  class="print-container">
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td>Child's Name</td>
+            <td>:&emsp;{{confirmation.child_name}}</td>
+            <td>Baptism Date</td>
+            <td>:&emsp;{{confirmation.baptism_date | date:'MMMM dd, y'}}</td>
+          </tr>
+          <tr>
+            <td>Father</td>
+            <td>:&emsp;{{confirmation.father_name}}</td>
+            <td>Date Confirmed</td>
+            <td>:&emsp;{{confirmation.confirmation_date | date:'MMMM dd, y'}}</td>
+          </tr>
+          <tr>
+            <td>Mother</td>
+            <td>:&emsp;{{confirmation.mother_name}}</td>
+            <td>Date Issued</td>
+            <td>:&emsp;{{currentDate | date:'MMMM dd, y'}}</td>
+          </tr>
+          <tr>
+            <td>Baptized At</td>
+            <td>:&emsp;{{confirmation.baptized_at}}</td>
+            <td>Conf. Bk. No</td>
+            <td>:&emsp;{{confirmation.book_no}}/ Pg. {{confirmation.page_no}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    
+      <table border="1" class="center-container" >
+        <tr>
+          <td>RECEIVE THE SACRAMENT OF CONFIRMATION<br>&emsp;ACCORDING TO THE RITES OF THE ROMAN CATCHOLIC CHURCH &emsp;</td>
+        </tr>
+      </table>
+      
+      <br>
+      <table width="100%">
+        <tbody>
+          <tr>
+            <td>Minister</td>
+            <td>:&emsp;{{confirmation.minister.minister_name}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Sponsors</td>
+            <td>:&emsp;{{confirmation.sponsors}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Remarks</td>
+            <td>:&emsp;{{confirmation.remarks}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Parish Seal</td>
+            <td>:</td>
+            <td>&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+            <td *ngIf="activeMinister" class="sign-area" >{{activeMinister.minister_name}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="sign-area">Parish Priest</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

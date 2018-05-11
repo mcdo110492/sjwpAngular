@@ -1,0 +1,30 @@
+<div id="print-area" >
+    <div *ngIf="death" class="print-container">
+        <h2><u>C E R T I F I C A T E &emsp;O F &emsp;D E A T H</u></h2>
+        <p>&emsp;&emsp;This is to certify that the mortal remains of&nbsp;&nbsp;&nbsp;+ {{death.deceased_name}}&nbsp;a native of&nbsp;Victorias City residing in {{death.residence}}, who died on {{death.date_death | date:'MMMM dd, y'}}.</p>
+        <p>&emsp;&emsp;Was buried in {{death.place_burial}} on {{death.date_burial | date:'MMMM dd, y'}} by {{death.minister.minister_name}} as found in the parish Death Registry Book No. {{death.book_no}} Page No. {{death.page_no}} Entry No. {{death.entry_no}}.</p>
+        <br>
+        <table>
+          <tbody>
+            <tr>
+              <td>Date Issued</td>
+              <td>:&nbsp;{{currentDate | date:'MMMM dd, y'}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr>
+              <td>Parish Seal</td>
+              <td style="width:250px">:</td>
+              <td *ngIf="activeMinister">{{activeMinister.minister_name}}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td style="width:250px"></td>
+              <td>&emsp;&emsp;&emsp;Parish Priest</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<!-- <md-nav-list>
+  <h3>Project</h3>
+    <form class="sidenav-form">
+      <md-select name="food" fxFlex>
+        <md-option value="1">
+            Bacolod City
+            </md-option>
+        </md-select>
+    </form>
+</md-nav-list> -->
+
+<div *ngFor="let nav of sideNavList | async" >
+    <h3 *ngIf="nav.isHeader">{{nav.header}}</h3>
+    <md-nav-list>
+        <md-list-item *ngFor="let list of nav.list" [routerLink]="list.routeUrl" routerLinkActive="nav-item-selected" class="sidenav-li">
+            <md-icon md-list-icon class="mat-icon material-icons">{{list.icon}}</md-icon>
+            <a md-line >{{list.title | uppercase}}</a>
+        </md-list-item>
+    </md-nav-list>
+</div>
+

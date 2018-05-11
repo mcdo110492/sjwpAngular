@@ -1,0 +1,199 @@
+<form [formGroup]="marriageForm" novalidate>
+  <md-card>
+    <md-card-content fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex="80">
+              <input mdInput placeholder="Husband Name" formControlName="husband_name" required>
+              <md-error>
+                Husband Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+
+            <div fxFlex="20">
+                <md-input-container >
+                  <input mdInput [mdDatepicker]="baptDate" placeholder="Husband Birthday" formControlName="husband_date_birth" required>
+                  <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+                  <button mdSuffix [mdDatepickerToggle]="baptDate"></button>
+                  <md-error>
+                      Husband Birthday is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+                <md-datepicker #baptDate [startAt]="startDate"></md-datepicker>
+            </div>
+
+      </div>  
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex>
+              <input mdInput placeholder="Husband Father Name" formControlName="husband_father_name" required>
+              <md-error>
+                Husband Father Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+  
+          <md-input-container fxFlex>
+              <input mdInput placeholder="Husband Mother Name" formControlName="husband_mother_name" required>
+              <md-error>
+                Husband Mother Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+
+      </div>
+
+
+      <div fxLayout="row" fxFill>
+        
+                  <md-input-container fxFlex>
+                      <input mdInput placeholder="Husband Residence" formControlName="husband_residence">
+                  </md-input-container>
+          
+                  <md-input-container fxFlex>
+                      <input mdInput placeholder="Husband Religion" formControlName="husband_religion">
+                  </md-input-container>
+        
+      </div>
+
+      <div fxLayout="row" fxFill>
+        
+                  <md-input-container fxFlex="80">
+                      <input mdInput placeholder="Wife Name" formControlName="wife_name" required>
+                      <md-error>
+                        Wife Name is <strong>required</strong>
+                      </md-error>
+                  </md-input-container>
+        
+                    <div fxFlex="20">
+                        <md-input-container >
+                          <input mdInput [mdDatepicker]="wifeDate" placeholder="Wife Birthday" formControlName="wife_date_birth" required>
+                          <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+                          <button mdSuffix [mdDatepickerToggle]="wifeDate"></button>
+                          <md-error>
+                              Wife Birthday is <strong>required</strong>
+                          </md-error>
+                        </md-input-container>
+                        <md-datepicker #wifeDate [startAt]="startDate"></md-datepicker>
+                    </div>
+        
+              </div>  
+              
+              <div fxLayout="row" fxFill>
+        
+                  <md-input-container fxFlex>
+                      <input mdInput placeholder="Wife Father Name" formControlName="wife_father_name" required>
+                      <md-error>
+                        Wife Father Name is <strong>required</strong>
+                      </md-error>
+                  </md-input-container>
+          
+                  <md-input-container fxFlex>
+                      <input mdInput placeholder="Wife Mother Name" formControlName="wife_mother_name" required>
+                      <md-error>
+                        Wife Mother Name is <strong>required</strong>
+                      </md-error>
+                  </md-input-container>
+        
+              </div>
+        
+        
+              <div fxLayout="row" fxFill>
+                
+                          <md-input-container fxFlex>
+                              <input mdInput placeholder="Wife Residence" formControlName="wife_residence">
+                          </md-input-container>
+                  
+                          <md-input-container fxFlex>
+                              <input mdInput placeholder="Wife Religion" formControlName="wife_religion">
+                          </md-input-container>
+                
+              </div>
+
+      
+      
+      <div fxLayout="row" fxFill>
+          
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Book No" formControlName="book_no" required>
+            <md-error>
+              Book No is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+              
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Page No" min="1" formControlName="page_no" required>
+            <md-error>
+                Page No is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Entry No" min="1" formControlName="entry_no" required>
+            <md-error>
+                Entry No is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+
+        <div fxFlex>
+          <md-input-container >
+            <input mdInput [mdDatepicker]="marrDate" placeholder="Date of Marriage" formControlName="date_married" required>
+            <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+            <button mdSuffix [mdDatepickerToggle]="marrDate"></button>
+            <md-error>
+                Date of Marriage is <strong>required</strong>
+            </md-error>
+          </md-input-container>
+          <md-datepicker #marrDate [startAt]="startDate"></md-datepicker>
+      </div>
+          
+      </div>
+
+
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex>
+              <textarea mdInput #sponsors placeholder="Sponsors" maxlength="200" formControlName="sponsors"></textarea>
+              <md-hint align="end">{{sponsors.value.length}} / 200</md-hint>
+          </md-input-container>
+
+          <md-input-container fxFlex>
+              <textarea #remarks mdInput placeholder="Remarks" maxlength="200" formControlName="remarks"></textarea>
+              <md-hint align="end">{{remarks.value.length}} / 200</md-hint>
+          </md-input-container>
+
+      </div>
+
+      <div fxLayout="row" fxFill>
+
+        <md-input-container fxFlex="66" class="tricky-select">
+            <input type="text" mdInput style="display:none;">
+            <md-select fxFlex="66"  formControlName="minister_id" placeholder="Minister" required>
+                <md-option *ngFor="let minister of ministers"  [value]="minister.minister_id">
+                    {{ minister.minister_name }}
+                </md-option>
+            </md-select>
+            <md-hint *ngIf="marriageForm.get('minister_id').hasError('required') && marriageForm.get('minister_id').touched" style="color:red;">
+                Minister is <strong>required</strong>
+            </md-hint>
+        </md-input-container>
+          
+      </div>
+
+      
+                
+    </md-card-content>
+
+    <md-card-actions> 
+      <div fxLayout fxFill fxLayoutAlign="center center">
+        
+        <button md-raised-button [disabled]="marriageForm.invalid || marriageForm.pristine" (click)="saveForm()"  color="accent">Save Changes</button>
+
+        <button md-raised-button *ngIf="marriage_id.value != 0" [disabled]="marriageForm.pristine" (click)="revertForm()"  color="warn">Revert Changes</button>
+
+        <button md-raised-button *ngIf="marriage_id.value == 0"   [disabled]="marriageForm.pristine" (click)="resetForm()"  color="warn">Reset</button>
+        
+      </div>
+    </md-card-actions> 
+  </md-card>
+</form>

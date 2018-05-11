@@ -1,0 +1,80 @@
+
+
+
+<app-title-bar [title]="'Baptism List'" [bulk]="true" ></app-title-bar>
+
+<div class="card-content-container mat-elevation-z8">
+  <div class="card-header">
+              <md-input-container  class="search-input-container">
+                <input type="search" mdInput [(ngModel)]="searchFilter" (ngModelChange)="newSearchFilter(searchFilter)" placeholder="Search Child Name" >
+              </md-input-container>
+        </div>
+  <div class="table-content" >
+        <md-table   #table [dataSource]="dataSource" mdSort (mdSortChange)="tableChangeEvent()" >
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container mdColumnDef="child_name">
+              <md-header-cell *mdHeaderCellDef md-sort-header> Child Name </md-header-cell>
+              <md-cell *mdCellDef="let row"> {{row.child_name}} </md-cell>
+            </ng-container>
+
+      
+            <ng-container mdColumnDef="birthday">
+              <md-header-cell *mdHeaderCellDef> Birthday </md-header-cell>
+              <md-cell *mdCellDef="let row"> {{row.birthday | date}} </md-cell>
+            </ng-container>
+
+
+            <ng-container mdColumnDef="baptism_date">
+              <md-header-cell *mdHeaderCellDef>Baptism Date</md-header-cell>
+              <md-cell *mdCellDef="let row" > {{row.baptism_date | date}} </md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="book_no">
+              <md-header-cell *mdHeaderCellDef>Book</md-header-cell>
+              <md-cell *mdCellDef="let row" >{{row.book_no}}</md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="page_no">
+              <md-header-cell *mdHeaderCellDef>Page</md-header-cell>
+              <md-cell *mdCellDef="let row" >{{row.page_no}}</md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="entry_no">
+              <md-header-cell *mdHeaderCellDef>Entry</md-header-cell>
+              <md-cell *mdCellDef="let row" >{{row.entry_no}}</md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="minister">
+              <md-header-cell *mdHeaderCellDef>Minister</md-header-cell>
+              <md-cell *mdCellDef="let row" >{{row.minister.minister_name}}</md-cell>
+            </ng-container>
+
+            <ng-container mdColumnDef="action">
+              <md-header-cell *mdHeaderCellDef>Action</md-header-cell>
+              <md-cell *mdCellDef="let row" >
+                <button md-raised-button color="accent" mdTooltip="View and Update Details" mdTooltipPosition="above" routerLink="detail/{{row.baptism_id}}">VIEW</button>
+                <button md-raised-button color="warn" mdTooltip="Print Details" mdTooltipPosition="above" routerLink="print/{{row.baptism_id}}">PRINT</button>
+              </md-cell>
+            </ng-container>
+
+            <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+  </div>
+
+    <md-paginator
+                [length]="pageDataLength"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page) = "tableChangeEvent()"
+                >
+      </md-paginator>
+  
+</div>
+
+
+

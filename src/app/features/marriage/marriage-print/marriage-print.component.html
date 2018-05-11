@@ -1,0 +1,99 @@
+<div id="print-area" >
+   
+    
+    <div *ngIf="marriage" class="print-container">
+        <h2 class="text-center"><u>C E R T I F I C A T E &emsp;O F &emsp;M A R R I A G E</u></h2>
+        <table width="100%">
+          <tbody>
+            <tr>
+              <td>Husband</td>
+              <td>: {{marriage.husband_name}}</td>
+              <td>Date Issued</td>
+              <td>: {{currentDate | date:'MMMM dd, y'}}</td>
+            </tr>
+            <tr>
+              <td>Father</td>
+              <td>: {{marriage.husband_father_name}}</td>
+              <td>Age</td>
+              <td>: {{ getAge(marriage.husband_date_birth) }} yrs. old</td>
+            </tr>
+            <tr>
+              <td>Mother</td>
+              <td>: {{marriage.husband_mother_name}}</td>
+              <td>Religion</td>
+              <td>: {{marriage.husband_religion}}</td>
+            </tr>
+            <tr>
+              <td>Residence</td>
+              <td>: {{marriage.husband_residence}}</td>
+              <td>Date of Birth</td>
+              <td>: {{marriage.husband_date_birth | date:'MMMM dd, y'}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="center-container" width="100%">
+          <tr>
+            <td class="text-center"><u>CONTRACTED MARRIAGE IN OUR CHURCH WITH</u></td>
+          </tr>
+        </table>
+        <table width="88%">
+          <tbody>
+            <tr>
+              <td>Wife</td>
+              <td>: {{marriage.wife_name}}</td>
+              <td>Age</td>
+              <td>: {{ getAge(marriage.wife_date_birth) }} yrs. old</td>
+            </tr>
+            <tr>
+              <td>Father</td>
+              <td>: {{marriage.husband_father_name}}</td>
+              <td>Religion</td>
+              <td>: {{marriage.wife_religion}}</td>
+            </tr>
+            <tr>
+              <td>Mother</td>
+              <td>: {{marriage.husband_mother_name}}</td>
+              <td>Residence</td>
+              <td>: {{marriage.wife_residence}}</td>
+            </tr>
+            <tr>
+              <td>Minister</td>
+              <td>: {{marriage.minister_name}}</td>
+              <td>Date of Birth</td>
+              <td>: {{marriage.wife_date_birth | date:'MMMM dd, y'}}</td>
+            </tr>
+            <tr>
+              <td>Date Married</td>
+              <td>: {{marriage.date_married | date:'MMMM dd, y'}}</td>
+              <td>Mar. Bk. Rgstry.</td>
+              <td>: {{marriage.book_no}}/ Pg. {{marriage.page_no}}/ #{{marriage.entry_no}}</td>
+            </tr>
+            <tr>
+              <td>Sponsors</td>
+              <td>: {{marriage.sponsors}}</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Parish Seal</td>
+              <td>: </td>
+              <td></td>
+              <td></td>
+            </tr>
+           
+          </tbody>
+        </table>
+        <table width="100%">
+          <tbody>
+            <tr>
+                <td></td>
+                <td *ngIf="activeMinister" class="text-center minister-area">{{activeMinister.minister_name}}</td>
+            </tr>
+            <tr>
+                <td style="width:230px"></td>
+                <td class="text-center">Parish Priest</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  </div>

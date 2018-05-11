@@ -1,0 +1,16 @@
+
+
+
+  <app-title-bar [title]="'Minister Details'" [goBack]="'/main/minister'" [toolTip]="'Go Back to Minister'" ></app-title-bar>
+    
+      
+      <!-- Start Form Component Here -->
+      <div *ngIf="minister">
+      <app-minister-form [minister]="minister" ></app-minister-form>
+      </div>
+      <!-- End Form Component Here -->
+  
+  
+  
+  
+  

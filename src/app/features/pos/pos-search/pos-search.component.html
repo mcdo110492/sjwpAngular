@@ -1,0 +1,12 @@
+<form #f="ngForm" novalidate>
+  <md-input-container fxFlex="90">
+      <md-icon mdPrefix>search</md-icon>
+      <input type="search" [mdAutocomplete]="auto" name="search" mdInput placeholder="Search Items Here..." [(ngModel)]="searchFilter" (ngModelChange)="itemSearch(searchFilter)">
+      <md-progress-spinner *ngIf="isLoader" mode="indeterminate" color="primary" class="search-loader" mdSuffix></md-progress-spinner>
+  </md-input-container>
+  <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayItem"  >
+    <md-option *ngFor="let item of services" [value]="item" (click)="selectedItemFn(item)" >
+       <i *ngIf="item.service_category" >{{ item.service_category.serviceCategoryName }}- </i> {{ item.serviceCode }} - {{ item.serviceName }} / Php {{item.cost | number : '1.2-2'}}
+    </md-option>
+ </md-autocomplete>
+</form>

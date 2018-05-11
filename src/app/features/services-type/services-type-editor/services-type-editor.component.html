@@ -1,0 +1,15 @@
+
+
+
+ 
+  <app-title-bar [title]="'Service Type Detail'" [goBack]="'/main/services/type'" [toolTip]="'Go Back to Services Type List'" ></app-title-bar> 
+  
+  <!-- Start Form Component Here -->
+  <div *ngIf="servicesType">
+  <app-services-type-form [servicesType]="servicesType" ></app-services-type-form>
+  </div>
+  <!-- End Form Component Here -->
+
+
+
+

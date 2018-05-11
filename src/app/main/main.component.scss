@@ -1,0 +1,48 @@
+
+
+.component-sidenav-container {
+    width: 100%;
+}
+
+md-sidenav-container {
+   position: relative;
+   height: 100%;
+}
+
+md-sidenav {
+   width: 15rem;
+   box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+
+.main-content {
+    min-height: 100%;
+
+    .content-header {
+        padding-left: 20px;
+        align-items: center;
+
+        h1, h2{
+            font-size: 30px;
+            font-weight: 300;
+            margin: 0;
+            padding: 50px;
+        }
+
+        .side-nav-toogle {
+            padding: 0;
+            margin: 8px;
+            min-width: 64px;
+        }
+    }
+
+    .content {
+        font-weight: 400;
+        margin: 20px 70px 50px 70px;
+        
+    }
+
+    .content2 {
+        font-weight: 300;
+        margin: 20px 10px 10px 10px;
+    }
+}

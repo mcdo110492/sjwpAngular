@@ -1,0 +1,25 @@
+<form [formGroup]="posForm" novalidate>
+  <md-card-title>Payment Details</md-card-title>
+  <md-card-subtitle>Date: {{ currentDate | date:'fullDate' }}</md-card-subtitle>
+  <md-card-content fxLayout="column">
+
+    
+        <md-input-container fxFlexFill>
+            <input mdInput type="number" placeholder="Reference Number" formControlName="rrNo" appUniqueValidator keyUrl="sales/validate" keyId="0"  required>
+            <md-error *ngIf="posForm.get('rrNo').hasError('asyncInvalid')" >This Reference Number is not available</md-error>
+            <md-error *ngIf="posForm.get('rrNo').hasError('required')" >Reference Number is required</md-error>
+        </md-input-container>
+        <md-input-container fxFlexFill>
+            <input mdInput type="number" placeholder="Cash Amount"  formControlName="amountPaid" (keyup)="logCashFn()" required>
+            <md-error>Cash Amount is required and must be a number</md-error>
+        </md-input-container>
+        <md-input-container fxFlexFill>
+            <input mdInput type="text" placeholder="Customer Name" formControlName="customer">
+        </md-input-container>
+    
+  </md-card-content>
+
+  <md-card-actions align="center">
+      <button type="submit" [disabled]="posForm.invalid || posForm.pristine || services.length == 0 || totalPrice > posForm.get('amountPaid').value " (click)="savePos()"  md-raised-button color="primary">Accept Payment</button>
+  </md-card-actions>
+</form>

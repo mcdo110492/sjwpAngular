@@ -1,0 +1,28 @@
+<md-card class="card-with-toolbar" *ngIf="goBack !== '' ">
+    <md-toolbar color="primary">
+        <button md-icon-button [mdTooltip]="toolTip" [routerLink]="goBack">
+            <md-icon>arrow_back</md-icon>
+        </button>
+        <md-card-header fxLayout fxFlex>
+            <md-card-title  fxFlex class="card-title" >{{title}}</md-card-title>
+        </md-card-header>
+    </md-toolbar>
+</md-card>
+
+
+<md-card class="card-with-toolbar" *ngIf="goBack === '' ">
+    <md-toolbar color="primary">
+        <md-card-header fxLayout fxFlex>
+            <md-card-title fxFlex class="card-title" >{{title}}</md-card-title>
+            <div fxFlex fxHide.xs></div>
+            <div fxHide.xs="true" >
+            <button *ngIf="!upload" md-raised-button class="card-button" color="accent" fxFlexAlign="end" routerLink="create">Add New Record</button>
+            <button *ngIf="bulk" md-raised-button class="card-button" color="accent" fxFlexAlign="end" routerLink="bulk">Add Bulk Record</button>
+            </div>
+        </md-card-header>
+        <md-toolbar-row fxHide.gt fxHide.sm fxHide.md fxHide.lg fxHide.xl>
+            <button *ngIf="!upload" md-raised-button class="card-button" color="accent" fxFlexAlign="end" routerLink="create">Add New Record</button>
+            <button *ngIf="bulk" md-raised-button class="card-button" color="accent" fxFlexAlign="end" routerLink="bulk">Add Bulk Record</button>
+        </md-toolbar-row>
+    </md-toolbar>
+</md-card>

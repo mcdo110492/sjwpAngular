@@ -1,0 +1,41 @@
+.table-report-content{
+    padding: 20px;
+}
+
+
+#report {
+    font-family: "Times New Roman", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#report td, #report th {
+    border: 1px solid #ddd;
+    padding: 8px;
+
+}
+
+#report tr:nth-child(even){background-color: #f2f2f2;}
+
+#report tr:hover {background-color: #ddd;}
+
+#report th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #2240C5;
+    color: white;
+}
+
+.category {
+    font-size: 15px;
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+
+.subCategory {
+    text-indent: 20px;
+}
+
+
+

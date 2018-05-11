@@ -1,0 +1,43 @@
+<app-title-bar [title]="'Expense Categories'" ></app-title-bar>
+
+<div  class="card-content-container mat-elevation-z8">
+  <div class="card-header">
+              <md-input-container  class="search-input-container">
+                <input type="search" mdInput [(ngModel)]="searchFilter" (ngModelChange)="newSearchFilter(searchFilter)" placeholder="Search Name" >
+              </md-input-container>
+        </div>
+  <div class="table-content">
+        <md-table   #table [dataSource]="dataSource" mdSort (mdSortChange)="tableChangeEvent()"  >
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container cdkColumnDef="expenseCategoryName">
+              <md-header-cell *cdkHeaderCellDef md-sort-header>Name</md-header-cell>
+              <md-cell *cdkCellDef="let row"> {{row.expenseCategoryName}} </md-cell>
+            </ng-container>
+
+
+            <ng-container cdkColumnDef="action">
+              <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
+              <md-cell *cdkCellDef="let row" >
+                <button md-raised-button color="accent" mdTooltip="View and Update Details" mdTooltipPosition="above" routerLink="detail/{{row.expenseCategoryId}}">VIEW</button>
+              </md-cell>
+            </ng-container>
+
+
+            <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+  </div>
+
+    <md-paginator #paginator
+                [length]="pageDataLength"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page) = "tableChangeEvent()"
+                >
+      </md-paginator>
+  
+</div>

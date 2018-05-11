@@ -1,0 +1,15 @@
+
+
+
+    <app-title-bar [title]="'Marriage Certificate Details'" [goBack]="'/main/marriage'" [toolTip]="'Go Back to Marriage List'" ></app-title-bar>
+  
+    
+    <!-- Start Form Component Here -->
+    <div *ngIf="marriage">
+    <app-marriage-form [marriage]="marriage" ></app-marriage-form>
+    </div>
+    <!-- End Form Component Here -->
+
+
+
+

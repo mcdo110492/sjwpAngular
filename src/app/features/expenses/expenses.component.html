@@ -1,0 +1,93 @@
+<app-title-bar [title]="'Expense List'"  ></app-title-bar>
+
+<md-card >
+  <md-card-content fxLayout>
+    <div fxFlex="66">
+        <md-input-container >
+            <input name="dateFilter" mdInput [mdDatepicker]="picker" placeholder="Select Date" [(ngModel)]="dateFilter" (ngModelChange)="tableChangeEvent()" >
+            <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+        <md-datepicker #picker [startAt]="currentDate"></md-datepicker>
+    </div>
+    <div fxFlex="grow"></div>
+    <div fxFlex>
+        <button md-raised-button (click)="printReport()" color="primary">Print Report</button>
+    </div>
+      
+  </md-card-content>
+</md-card>
+
+<div class="card-content-container mat-elevation-z8">
+    <div class="card-header">
+                <md-input-container  class="search-input-container">
+                  <input type="search" mdInput [(ngModel)]="searchFilter" (ngModelChange)="newSearchFilter(searchFilter)"  placeholder="Search Reference Number" >
+                </md-input-container>
+    </div>
+    <div class="table-content" >
+          <md-table   #table [dataSource]="dataSource" mdSort (mdSortChange)="tableChangeEvent()" >
+  
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+  
+              <ng-container cdkColumnDef="expenserrNo">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Reference Number </md-header-cell>
+                <md-cell *cdkCellDef="let row"> {{row.expenserrNo}} </md-cell>
+              </ng-container>
+  
+              <ng-container cdkColumnDef="expense">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Expense Code - Name </md-header-cell>
+                <md-cell *cdkCellDef="let row">{{ row.expenses.expenseCode }} - {{row.expenses.expenseName}} </md-cell>
+              </ng-container>
+
+              <ng-container cdkColumnDef="expenseCost">
+                  <md-header-cell *cdkHeaderCellDef md-sort-header> Expense Cost </md-header-cell>
+                  <md-cell *cdkCellDef="let row"> {{row.expenseCost}} </md-cell>
+                </ng-container>
+  
+              <ng-container cdkColumnDef="details">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Details </md-header-cell>
+                <md-cell *cdkCellDef="let row"> {{row.details}} </md-cell>
+              </ng-container>
+  
+              <ng-container cdkColumnDef="user">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Issued By </md-header-cell>
+                <md-cell *cdkCellDef="let row"> {{row.users.username}} </md-cell>
+              </ng-container>
+  
+              <ng-container cdkColumnDef="status">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Status </md-header-cell>
+                <md-cell *cdkCellDef="let row">
+                      <button *ngIf="row.status == 1" (click)="changeStatus(row.expenseCostId,0)" md-icon-button mdTooltip="Click to cancel this transaction" mdTooltipPosition="above"  color="accent">
+                          <md-icon>check</md-icon>
+                      </button>
+                      <button *ngIf="row.status == 0" (click)="changeStatus(row.expenseCostId,1)" md-icon-button mdTooltip="Click to activate this transaction" mdTooltipPosition="above" color="warn">
+                          <md-icon>close</md-icon>
+                      </button>
+                </md-cell>
+              </ng-container>
+  
+              <ng-container cdkColumnDef="action">
+                <md-header-cell *cdkHeaderCellDef md-sort-header> Action </md-header-cell>
+                <md-cell *cdkCellDef="let row"> 
+                  <button md-raised-button color="accent" mdTooltip="View and Update Details" mdTooltipPosition="above" routerLink="detail/{{row.expenseCostId}}">VIEW</button>
+                </md-cell>
+              </ng-container>
+  
+  
+         
+              <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+              <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+          </md-table>
+    </div>
+  
+      <md-paginator
+                  [length]="pageDataLength"
+                  [pageIndex]="pageIndex"
+                  [pageSize]="pageSize"
+                  [pageSizeOptions]="pageSizeOptions"
+                  (page) = "tableChangeEvent()"
+                  >
+        </md-paginator>
+    
+  </div>

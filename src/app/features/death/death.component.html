@@ -1,0 +1,81 @@
+
+<app-title-bar [title]="'Death List'" [bulk]="true" ></app-title-bar>
+
+<div class="card-content-container mat-elevation-z8">
+  <div class="card-header">
+              <md-input-container  class="search-input-container">
+                <input type="search" mdInput [(ngModel)]="searchFilter" (ngModelChange)="newSearchFilter(searchFilter)" placeholder="Search Deceased Name" >
+              </md-input-container>
+        </div>
+  <div class="table-content">
+        <md-table   #table [dataSource]="dataSource" mdSort (mdSortChange)="tableChangeEvent()" [trackBy]="tableTrackBy" >
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+            <ng-container cdkColumnDef="deceased_name">
+              <md-header-cell *cdkHeaderCellDef md-sort-header> Deceased Name </md-header-cell>
+              <md-cell *cdkCellDef="let row"> {{row.deceased_name}} </md-cell>
+            </ng-container>
+
+            <ng-container cdkColumnDef="date_death">
+              <md-header-cell *cdkHeaderCellDef>Date of Death</md-header-cell>
+              <md-cell *cdkCellDef="let row" > {{row.date_death | date}} </md-cell>
+            </ng-container>
+
+             <ng-container cdkColumnDef="place_burial">
+              <md-header-cell *cdkHeaderCellDef>Place of Burial</md-header-cell>
+              <md-cell *cdkCellDef="let row" > {{row.place_burial}} </md-cell>
+            </ng-container>
+
+            <ng-container cdkColumnDef="date_burial">
+              <md-header-cell *cdkHeaderCellDef>Date of Burial</md-header-cell>
+              <md-cell *cdkCellDef="let row" > {{row.date_burial | date}} </md-cell>
+            </ng-container>
+
+             <ng-container cdkColumnDef="book_no">
+              <md-header-cell *cdkHeaderCellDef>Book</md-header-cell>
+              <md-cell *cdkCellDef="let row" >{{row.book_no}}</md-cell>
+            </ng-container>
+
+
+            <ng-container cdkColumnDef="page_no">
+              <md-header-cell *cdkHeaderCellDef>Page</md-header-cell>
+              <md-cell *cdkCellDef="let row" >{{row.page_no}}</md-cell>
+            </ng-container>
+
+            <ng-container cdkColumnDef="entry_no">
+              <md-header-cell *cdkHeaderCellDef>Entry</md-header-cell>
+              <md-cell *cdkCellDef="let row" >{{row.entry_no}}</md-cell>
+            </ng-container>
+
+
+            <ng-container cdkColumnDef="minister">
+              <md-header-cell *cdkHeaderCellDef>Minister</md-header-cell>
+              <md-cell *cdkCellDef="let row" >{{row.minister.minister_name}}</md-cell>
+            </ng-container>
+
+            <ng-container cdkColumnDef="action">
+              <md-header-cell *cdkHeaderCellDef>Action</md-header-cell>
+              <md-cell *cdkCellDef="let row" >
+                <button md-raised-button color="accent" mdTooltip="View and Update Details" mdTooltipPosition="above" routerLink="detail/{{row.death_id}}">VIEW</button>
+                <button md-raised-button color="warn" mdTooltip="Print Details" mdTooltipPosition="above" routerLink="print/{{row.death_id}}">PRINT</button>
+              </md-cell>
+            </ng-container>
+
+            <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+  </div>
+
+    <md-paginator #paginator
+                [length]="pageDataLength"
+                [pageIndex]="pageIndex"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="pageSizeOptions"
+                (page) = "tableChangeEvent()"
+                >
+      </md-paginator>
+  
+</div>
+

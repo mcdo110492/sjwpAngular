@@ -1,0 +1,79 @@
+<md-card fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlexFill>
+
+  <div fxFlex>
+
+    <app-pos-search (selectedServices)="selectedItemFn($event)" ></app-pos-search>
+
+  <div id="items-table">
+
+    <div  class="table-pos-container over-flow">
+        <table >
+            <thead>
+              <tr>
+                <th>Item(s)</th>
+                <th>Qty</th>
+                <th>Per Item</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedServices; let i = index">
+                <td> <div *ngIf="item.service_category" >{{ item.service_category.serviceCategoryName }} -</div> {{ item.serviceName }} </td>
+                <td>
+                  <button md-icon-button mdTooltip="Add 1 Quantity" mdTooltipPosition="above" color="accent" (click)="addQty(i)" >
+                      <md-icon>add</md-icon>
+                  </button>
+                  <span>{{item.serviceQty}}</span>
+                  <button md-icon-button mdTooltip="Subtract 1 Quantity" mdTooltipPosition="above" color="warn" (click)="subtractQty(i)">
+                      <md-icon>remove</md-icon>
+                  </button>
+                </td>
+                <td>{{ item.cost | number: '1.2-2' }}</td>
+                <td>
+                    <button md-icon-button mdTooltip="Remove Item from the list" mdTooltipPosition="above" color="warn" (click)="removeItem(i,item)" >
+                        <md-icon >delete_forever</md-icon>
+                    </button>
+                  
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+    <div class="table-footer">
+        <table>
+            <thead>
+              <tr>
+                <th>Total Item(s):</th>
+                <th> {{totalItems}} </th>
+                <th>Total Price: </th>
+                <th>{{totalPrice | number:'1.2-2'}}</th>
+              </tr>
+              <tr>
+                <th>Cash: </th>
+                <th>{{ cash | number:'1.2-2' }}</th>
+                <th>Change: </th>
+                <th>{{ cashChange | number:'1.2-2' }}</th>
+              </tr>
+              <tr>
+                <th>Total Collection for this day: </th>
+                <th></th>
+                <th></th>
+                <th>{{ totalCollection | number:'1.2-2' }}</th>
+              </tr>
+            </thead>
+        </table>
+    </div>
+   
+
+  </div>
+
+
+  </div>
+
+  <md-card fxFlex>
+    <app-pos-form [services]="selectedServices" [totalPrice]="totalPrice" (cash)="logCashFn($event)" (saveProgress)="saveProgressFn($event)" ></app-pos-form>
+  </md-card>
+
+</md-card>
+

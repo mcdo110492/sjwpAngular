@@ -1,0 +1,48 @@
+<md-toolbar color="primary" class="mat-elevation-z6" >
+        <div fxLayout fxFlex fxLayoutAlign="start center">
+            <div fxFlexAlign="stretch">
+                <button md-icon-button (click)="sideNavToggle()">
+                    <md-icon class="md-48">menu</md-icon>
+                </button>
+            </div>
+            <div fxFlex>
+               <div fxLayout fxFlex>
+                    <!-- <img fxFlex class="app-logo" src="assets/favicon.jpg" alt=""> -->
+                    <div fxFlex>St. Joseph the Worker Parish</div>
+               </div>
+            </div>
+        </div>
+        <span fxFlex="grow"></span>
+
+        <div fxLayout fxFlex fxLayoutAlign="end center">
+            <button fxLayout fxFlex md-button [mdMenuTriggerFor]="menuRef" >
+                <div fxFlex fxLayoutAlign="space-between center">
+                    <div class="avatar-wrapper">
+                        <img  class="avatar" [src]="userProfilePic">
+                    </div>
+                    <div class="username" fxHide.xs fxHide.sm>{{ userProfileName }}</div>
+                    <md-icon fxFlex>arrow_drop_down</md-icon>
+                </div>
+            </button>
+            <md-menu #menuRef="mdMenu" [overlapTrigger]="false" xPosition="before">
+                    <button md-menu-item fxHide.lg>
+                        <md-icon>perm_identity</md-icon>
+                        {{ userProfileName }}
+                    </button>
+                    <md-divider></md-divider>
+
+                    <button md-menu-item routerLink="/main/profile" >
+                        <md-icon>settings</md-icon>
+                        Profile Settings
+                    </button>
+                    <md-divider></md-divider>
+                    <button md-menu-item (click)="logout()">
+                        <md-icon>power_settings_new</md-icon>
+                        Logout
+                    </button>
+
+                </md-menu>
+        </div>
+
+    </md-toolbar> 
+    

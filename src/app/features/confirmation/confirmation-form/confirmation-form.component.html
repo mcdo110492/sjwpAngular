@@ -1,0 +1,133 @@
+<form [formGroup]="confirmationForm" novalidate>
+  <md-card>
+    <md-card-content fxLayout="column" fxLayoutAlign="space-between center" fxFill>
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex="80">
+              <input mdInput placeholder="Child Name" formControlName="child_name" required>
+              <md-error>
+                Child Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+
+            <div fxFlex="20">
+                <md-input-container >
+                  <input mdInput [mdDatepicker]="confDate" placeholder="Confirmation Date" formControlName="confirmation_date" required>
+                  <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+                  <button mdSuffix [mdDatepickerToggle]="confDate"></button>
+                  <md-error>
+                      Confirmation Date is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+                <md-datepicker #confDate [startAt]="startDate"></md-datepicker>
+            </div>
+
+      </div>  
+      
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex>
+              <input mdInput placeholder="Father Name" formControlName="father_name" required>
+              <md-error>
+                Father Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+  
+          <md-input-container fxFlex>
+              <input mdInput placeholder="Mother Name" formControlName="mother_name" required>
+              <md-error>
+                Mother Name is <strong>required</strong>
+              </md-error>
+          </md-input-container>
+
+      </div>
+
+
+      <div fxLayout="row" fxFill>
+          
+          <md-input-container fxFlex="80">
+            <input mdInput placeholder="Baptized At" formControlName="baptized_at">
+          </md-input-container>
+          
+          <div fxFlex="20">
+            <md-input-container >
+              <input mdInput [mdDatepicker]="picker" placeholder="Baptism Date" formControlName="baptism_date" >
+              <md-hint align="start"><strong>Click the Date Icon to select</strong> </md-hint>
+              <button mdSuffix [mdDatepickerToggle]="picker"></button>
+              <md-error>
+                Baptism Date is <strong>required</strong>
+            </md-error>
+            </md-input-container>
+            <md-datepicker #picker [startAt]="startDate"></md-datepicker>
+          </div>
+          
+      </div>
+      
+      
+      <div fxLayout="row" fxFill>
+          
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Book No" formControlName="book_no" required>
+            <md-error>
+              Book No is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+              
+        <md-input-container fxFlex>
+            <input type="number" mdInput placeholder="Page No" min="1" formControlName="page_no" required>
+            <md-error>
+                Page No is <strong>required and must be number with a minimum of 1</strong>
+            </md-error>
+        </md-input-container>
+          
+      </div>
+
+
+      <div fxLayout="row" fxFill>
+
+          <md-input-container fxFlex>
+              <textarea mdInput #sponsors placeholder="Sponsors" maxlength="200" formControlName="sponsors"></textarea>
+              <md-hint align="end">{{sponsors.value.length}} / 200</md-hint>
+          </md-input-container>
+
+          <md-input-container fxFlex>
+              <textarea #remarks mdInput placeholder="Remarks" maxlength="200" formControlName="remarks"></textarea>
+              <md-hint align="end">{{remarks.value.length}} / 200</md-hint>
+          </md-input-container>
+
+      </div>
+
+      <div fxLayout="row" fxFill>
+
+        <md-input-container fxFlex="66" class="tricky-select">
+            <input type="text" mdInput style="display:none;">
+            <md-select fxFlex="66"  formControlName="minister_id" placeholder="Minister" required>
+                <md-option *ngFor="let minister of ministers"  [value]="minister.minister_id">
+                    {{ minister.minister_name }}
+                </md-option>
+            </md-select>
+            <md-hint *ngIf="confirmationForm.get('minister_id').hasError('required') && confirmationForm.get('minister_id').touched" style="color:red;">
+                Minister is <strong>required</strong>
+            </md-hint>
+        </md-input-container>
+          
+      </div>
+
+      
+                
+    </md-card-content>
+
+    <md-card-actions> 
+      <div fxLayout fxFill fxLayoutAlign="center center">
+        
+        <button md-raised-button [disabled]="confirmationForm.invalid || confirmationForm.pristine" (click)="saveForm()"  color="accent">Save Changes</button>
+
+        <button md-raised-button *ngIf="confirmation_id.value != 0" [disabled]="confirmationForm.pristine" (click)="revertForm()"  color="warn">Revert Changes</button>
+
+        <button md-raised-button *ngIf="confirmation_id.value == 0"   [disabled]="confirmationForm.pristine" (click)="resetForm()"  color="warn">Reset</button>
+        
+      </div>
+    </md-card-actions> 
+  </md-card>
+</form>
